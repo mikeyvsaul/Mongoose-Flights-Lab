@@ -1,0 +1,53 @@
+<%- include('../partials/header') %>
+
+<section id="show-page">
+  <div>Airline: </div>
+  <div><%= flight.airline %></div>
+  <div>Airport: </div>
+  <div><%= flight.airport %></div>
+  <div>Flight Number: </div>
+  <div><%= flight.flightNo %></div>
+  <div>Departs: </div>
+  <div><%= flight.departs %></div>
+</section>
+
+<% if (flight.destinations.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Airport</th>
+        <th>Arrival</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flight.destinations.forEach(function(d) { %>
+        <tr>
+          <td><%= d.createdAt.toLocaleDateString() %></td>
+          <td><%= d.content %></td>
+          <td><%= d.rating %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+<% } else { %>
+  <h5>No Added Destinations</h5>
+<% } %>
+
+<br><br><h2>Destinations</h2>
+ <form id="add-destination-form" method="POST"
+   action="/flights/<%= flight._id %>/destinations">
+   <label>Additional Destinations:</label>
+   <textarea name="content"></textarea>
+   <label>Rating:</label>
+   <select name="rating">
+     <option value="1">1</option>
+     <option value="2">2</option>
+     <option value="3">3</option>
+     <option value="4">4</option>
+     <option value="5">5</option>
+   </select>
+   <input type="submit" value="Add Review">
+ </form>
+
+<%- include('../partials/footer') %>
