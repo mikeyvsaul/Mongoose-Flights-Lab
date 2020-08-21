@@ -15,7 +15,7 @@
   <table>
     <thead>
       <tr>
-        <th>Date</th>
+        <th>Date Added</th>
         <th>Airport</th>
         <th>Arrival</th>
       </tr>
@@ -24,8 +24,8 @@
       <% flight.destinations.forEach(function(d) { %>
         <tr>
           <td><%= d.createdAt.toLocaleDateString() %></td>
-          <td><%= d.content %></td>
-          <td><%= d.rating %></td>
+          <td><%= d.airport %></td>
+          <td><%= d.arrival %></td>
         </tr>
       <% }); %>
     </tbody>
@@ -35,19 +35,20 @@
 <% } %>
 
 <br><br><h2>Destinations</h2>
- <form id="add-destination-form" method="POST"
-   action="/flights/<%= flight._id %>/destinations">
-   <label>Additional Destinations:</label>
-   <textarea name="content"></textarea>
-   <label>Rating:</label>
-   <select name="rating">
-     <option value="1">1</option>
-     <option value="2">2</option>
-     <option value="3">3</option>
-     <option value="4">4</option>
-     <option value="5">5</option>
-   </select>
-   <input type="submit" value="Add Review">
- </form>
+<form id="add-destination-form" method="POST"
+  action="/flights/<%= flight._id %>/destinations">
+  <label>Additional Destinations:</label>
+  <select name="airport">
+    <option value="AUS">AUS</option>
+    <option value="DFW">DFW</option>
+    <option value="DEN">DEN</option>
+    <option value="LAX">LAX</option>
+    <option value="SAN">SAN</option>
+  </select>
+  <label>Arrival Date:
+    <input type="datetime-local" name="arrival" value="<%= flight.departs.toISOString().slice(0, 16) %>">
+  </label><br>
+   <input type="submit" value="Add Destination">
+</form>
 
 <%- include('../partials/footer') %>

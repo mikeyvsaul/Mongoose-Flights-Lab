@@ -15,6 +15,7 @@ function index(req, res) {
 
 function show(req, res) {
   Flight.findById(req.params.id, function(err, flight) {
+    console.log(flight)
     res.render('flights/show', { flight });
   });
 }
@@ -29,7 +30,7 @@ function newFlight(req, res) {
 function create(req, res) {
   const flight = new Flight(req.body);
   flight.save(function(err) {
-    if (err) return res.render('lights/new');
+    if (err) return res.render('flights/new');
     res.redirect('/flights');
   })
 }
