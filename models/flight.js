@@ -10,7 +10,7 @@ const destinationSchema = new Schema({
     type: Date,
     default: function() {
       const nd = new Date();
-      return nd.setFullYear(nd.getMonth() + 13)
+      return nd.setFullYear(nd.getFullYear() + 1)
     }
   }
   
