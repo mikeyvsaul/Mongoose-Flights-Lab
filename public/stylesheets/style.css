@@ -7,9 +7,9 @@ a {
   color: #00B7FF;
 }
 
-table {
+/* table {
   font-size: 20px;
-}
+} */
 
 table thead th {
   padding: 5px;
@@ -55,7 +55,7 @@ table td {
 }
 
 #new-form *,  #add-review-form * {
-  font-size: 20px;
+  /* font-size: 20px; */
   padding: 5px;
   border-radius: 5px;
 }
@@ -70,6 +70,7 @@ table td {
   display: grid;
   grid-template-columns: auto;
   grid-gap: 1rem;
+  justify-items: left;
 }
 
 #add-destination-form input[type="submit"] {

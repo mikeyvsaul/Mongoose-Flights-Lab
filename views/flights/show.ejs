@@ -11,6 +11,32 @@
   <div><%= flight.departs %></div>
 </section>
 
+<% if (tickets.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Seat</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% tickets.forEach(function(t) { %>
+        <tr>
+          <td><%= t.seat %></td>
+          <td><%= t.price %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+<% } else { %>
+  <h5>No Tickets</h5>
+<% } %>
+
+<form id="add-ticket-form" method="GET" 
+  action="/flights/<%= flight._id %>/tickets/new">
+<input type="submit" value="Add Ticket">
+</form>
+
 <% if (flight.destinations.length) { %>
   <table>
     <thead>
@@ -47,8 +73,8 @@
   </select>
   <label>Arrival Date:
     <input type="datetime-local" name="arrival" value="<%= flight.departs.toISOString().slice(0, 16) %>">
-  </label><br>
-   <input type="submit" value="Add Destination">
+  </label>
+  <input type="submit" value="Add Destination">
 </form>
 
 <%- include('../partials/footer') %>
