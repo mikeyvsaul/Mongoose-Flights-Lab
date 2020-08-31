@@ -5,11 +5,12 @@ body {
 
 a {
   color: #00B7FF;
+  font-size: 17px;
 }
 
-/* table {
-  font-size: 20px;
-} */
+nav {
+  padding: 10px 0px;
+}
 
 table thead th {
   padding: 5px;

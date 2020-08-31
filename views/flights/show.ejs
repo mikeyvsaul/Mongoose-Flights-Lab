@@ -11,6 +11,8 @@
   <div><%= flight.departs %></div>
 </section>
 
+&nbsp;
+<br><br><h2>Tickets</h2>
 <form id="add-ticket-form" method="GET" 
   action="/flights/<%= flight._id %>/tickets/new">
 <input type="submit" value="Add Ticket">
@@ -28,9 +30,9 @@
       <% tickets.forEach(function(t) { %>
         <tr>
           <td><%= t.seat %></td>
-          <td><%= t.price %></td>
+          <td>$<%= t.price %></td>
           <td>
-            <form action="/flights/<%= t._id %>?_method=DELETE" class="delete-form" method="POST">
+            <form action="/tickets/<%= t._id %>?_method=DELETE" class="delete-form" method="POST">
             <button type="submit">X</button>
             </form>
           </td>
