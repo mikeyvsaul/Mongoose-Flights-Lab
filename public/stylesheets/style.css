@@ -79,3 +79,11 @@ table td {
   margin-bottom: 2rem;
 }
 
+.delete-form {
+  display: inline-block;
+  margin-right: 10px;
+}
+	
+.delete-form button {
+  color: red;
+}

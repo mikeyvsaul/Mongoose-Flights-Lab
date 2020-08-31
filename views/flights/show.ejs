@@ -11,6 +11,11 @@
   <div><%= flight.departs %></div>
 </section>
 
+<form id="add-ticket-form" method="GET" 
+  action="/flights/<%= flight._id %>/tickets/new">
+<input type="submit" value="Add Ticket">
+</form>
+
 <% if (tickets.length) { %>
   <table>
     <thead>
@@ -24,40 +29,17 @@
         <tr>
           <td><%= t.seat %></td>
           <td><%= t.price %></td>
+          <td>
+            <form action="/flights/<%= t._id %>?_method=DELETE" class="delete-form" method="POST">
+            <button type="submit">X</button>
+            </form>
+          </td>
         </tr>
       <% }); %>
     </tbody>
   </table>
 <% } else { %>
   <h5>No Tickets</h5>
-<% } %>
-
-<form id="add-ticket-form" method="GET" 
-  action="/flights/<%= flight._id %>/tickets/new">
-<input type="submit" value="Add Ticket">
-</form>
-
-<% if (flight.destinations.length) { %>
-  <table>
-    <thead>
-      <tr>
-        <th>Date Added</th>
-        <th>Airport</th>
-        <th>Arrival</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% flight.destinations.forEach(function(d) { %>
-        <tr>
-          <td><%= d.createdAt.toLocaleDateString() %></td>
-          <td><%= d.airport %></td>
-          <td><%= d.arrival %></td>
-        </tr>
-      <% }); %>
-    </tbody>
-  </table>
-<% } else { %>
-  <h5>No Added Destinations</h5>
 <% } %>
 
 <br><br><h2>Destinations</h2>
@@ -76,5 +58,33 @@
   </label>
   <input type="submit" value="Add Destination">
 </form>
+
+<% if (flight.destinations.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Date Added</th>
+        <th>Airport</th>
+        <th>Arrival</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flight.destinations.forEach(function(d) { %>
+        <tr>
+          <td><%= d.createdAt.toLocaleDateString() %></td>
+          <td><%= d.airport %></td>
+          <td><%= d.arrival %></td>
+          <td>
+            <form action="/flights/<%= d._id %>?_method=DELETE" class="delete-form" method="POST">
+            <button type="submit">X</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+<% } else { %>
+  <h5>No Added Destinations</h5>
+<% } %>
 
 <%- include('../partials/footer') %>
